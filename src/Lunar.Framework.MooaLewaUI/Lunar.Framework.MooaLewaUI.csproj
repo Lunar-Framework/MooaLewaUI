@@ -6,4 +6,8 @@
         <LangVersion>10</LangVersion>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Lunar.Core.Base\Lunar.Core.Base.csproj" />
+    </ItemGroup>
+
 </Project>
