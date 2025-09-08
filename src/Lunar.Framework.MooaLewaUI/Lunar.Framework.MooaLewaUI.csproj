@@ -10,4 +10,10 @@
       <ProjectReference Include="..\Lunar.Core.Base\Lunar.Core.Base.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Runtime\" />
+      <Folder Include="Xaml\Compiler\" />
+      <Folder Include="Xaml\Parser\" />
+    </ItemGroup>
+
 </Project>
