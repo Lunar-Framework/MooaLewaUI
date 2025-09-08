@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Core.Base", "src\Lunar.Core.Base\Lunar.Core.Base.csproj", "{5E01402B-F94C-44A3-A04B-6C4DF6C04A4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI.Test", "src\Lunar.Framework.MooaLewaUI.Test\Lunar.Framework.MooaLewaUI.Test.csproj", "{0BBD42B3-3643-4515-817C-9A0E2C1D4846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{5E01402B-F94C-44A3-A04B-6C4DF6C04A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E01402B-F94C-44A3-A04B-6C4DF6C04A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E01402B-F94C-44A3-A04B-6C4DF6C04A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BBD42B3-3643-4515-817C-9A0E2C1D4846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BBD42B3-3643-4515-817C-9A0E2C1D4846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BBD42B3-3643-4515-817C-9A0E2C1D4846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BBD42B3-3643-4515-817C-9A0E2C1D4846}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
