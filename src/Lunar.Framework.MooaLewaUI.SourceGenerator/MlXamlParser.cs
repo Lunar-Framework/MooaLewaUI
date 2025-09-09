@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using Lunar.Core.Base.Interfaces;
+using Microsoft.CodeAnalysis;
 
 namespace Lunar.Framework.MooaLewaUI.SourceGenerator;
 
-public class MlXamlParser
+internal class MlXamlParser
 {
-    internal static List<IMlXamlNode> Parse(string xmlString, ILogger logger)
+    public static List<IMlXamlNode> Parse(string xmlString, out List<Diagnostic> diagnostics)
     {
+        diagnostics = new List<Diagnostic>();
         var nodes = new List<IMlXamlNode>();
         try
         {
@@ -21,14 +22,18 @@ public class MlXamlParser
                     continue;
                 }
 
-                node.Load(element, logger);
+                node.Load(element, diagnostics);
                 
                 nodes.Add(node);
             }
         }
         catch (Exception ex)
         {
-            logger.LogError($"An error occurred while parsing XML: {ex.Message}");
+            diagnostics.Add(Diagnostic.Create(
+                new DiagnosticDescriptor("ML002", "XML Parsing Error", "An error occurred while parsing XML: {0}", "MlXaml", DiagnosticSeverity.Error, true),
+                Location.None,
+                ex.Message
+            ));
         }
 
         return nodes;

@@ -1,12 +1,12 @@
-using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
-using Lunar.Core.Base.Interfaces;
+using Microsoft.CodeAnalysis;
 
 namespace Lunar.Framework.MooaLewaUI.SourceGenerator;
 
 internal interface IMlXamlNode
 {
-    void Load(XElement element, ILogger logger);
+    void Load(XElement element, List<Diagnostic> diagnostics);
 }
 
 internal class TextBlockNode : IMlXamlNode
@@ -14,7 +14,7 @@ internal class TextBlockNode : IMlXamlNode
     public string? Text { get; set; }
     public string? Font { get; set; }
 
-    public void Load(XElement element, ILogger logger)
+    public void Load(XElement element, List<Diagnostic> diagnostics)
     {
         foreach (var attribute in element.Attributes())
         {
@@ -36,7 +36,7 @@ internal class SpriteNode : IMlXamlNode
     public string? Source { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
-    public void Load(XElement element, ILogger logger)
+    public void Load(XElement element, List<Diagnostic> diagnostics)
     {
         foreach (var attribute in element.Attributes())
         {
@@ -51,8 +51,13 @@ internal class SpriteNode : IMlXamlNode
                 {
                     if (!int.TryParse(attribute.Value, out var xValue))
                     {
-                        logger.LogWarning($"Warning: Could not parse attribute 'X' with value '{attribute.Value}'. Defaulting to 0.");
-                        xValue = 0; 
+                        var diagnostic = Diagnostic.Create(
+                            new DiagnosticDescriptor("ML001", "Invalid attribute value", "Could not parse attribute 'X' with value '{0}'. Defaulting to 0.", "MlXaml", DiagnosticSeverity.Warning, true),
+                            Location.None, // Ideally, map this to a line/column in the .mlxaml file
+                            attribute.Value
+                        );
+                        diagnostics.Add(diagnostic);
+                        xValue = 0;
                     }
                     X = xValue;
                     break;
@@ -61,8 +66,13 @@ internal class SpriteNode : IMlXamlNode
                 {
                     if (!int.TryParse(attribute.Value, out var yValue))
                     {
-                        logger.LogWarning($"Warning: Could not parse attribute 'Y' with value '{attribute.Value}'. Defaulting to 0.");
-                        yValue = 0; 
+                        var diagnostic = Diagnostic.Create(
+                            new DiagnosticDescriptor("ML001", "Invalid attribute value", "Could not parse attribute 'X' with value '{0}'. Defaulting to 0.", "MlXaml", DiagnosticSeverity.Warning, true),
+                            Location.None, // Ideally, map this to a line/column in the .mlxaml file
+                            attribute.Value
+                        );
+                        diagnostics.Add(diagnostic);
+                        yValue = 0;
                     }
                     Y = yValue;
                     break;

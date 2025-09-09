@@ -1,9 +1,9 @@
 using JetBrains.Annotations;
-using Lunar.Framework.MooaLewaUI.MlXaml.Compiler;
+using Lunar.Framework.MooaLewaUI.SourceGenerator;
 using Microsoft.CodeAnalysis;
 using Xunit.Abstractions;
 
-namespace Lunar.Framework.MooaLewaUI.Test.MlXaml.Compiler;
+namespace Lunar.Framework.MooaLewaUI.Test;
 
 [TestSubject(typeof(MlXamlCodeGenerator))]
 public class MlXamlCodeGeneratorTest(ITestOutputHelper testOutputHelper)

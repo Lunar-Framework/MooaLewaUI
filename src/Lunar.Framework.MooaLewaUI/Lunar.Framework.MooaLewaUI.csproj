@@ -18,4 +18,14 @@
       <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Lunar.Framework.MooaLewaUI.SourceGenerator\Lunar.Framework.MooaLewaUI.SourceGenerator.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="**\*.mlxaml" />
+    </ItemGroup>
+
 </Project>

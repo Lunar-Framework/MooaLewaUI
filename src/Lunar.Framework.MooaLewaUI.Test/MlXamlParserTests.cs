@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using JetBrains.Annotations;
-using Lunar.Framework.MooaLewaUI.MlXaml.Compiler;
+using Lunar.Framework.MooaLewaUI.SourceGenerator;
 
-namespace Lunar.Framework.MooaLewaUI.Test.MlXaml.Compiler;
+namespace Lunar.Framework.MooaLewaUI.Test;
 
 [TestSubject(typeof(MlXamlParser))]
 public class MlXamlParserTests
@@ -16,7 +16,7 @@ public class MlXamlParserTests
                 <Sprite Source='player.png' X='100' Y='200'/>
             </Root>";
 
-        var nodes = MlXamlParser.Parse(xml);
+        var nodes = MlXamlParser.Parse(xml, out _);
 
         Assert.Equal(2, nodes.Count);
         Assert.IsType<TextBlockNode>(nodes[0]);
