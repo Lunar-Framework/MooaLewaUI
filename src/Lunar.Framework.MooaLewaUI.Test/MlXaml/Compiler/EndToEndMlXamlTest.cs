@@ -5,27 +5,32 @@ using Xunit.Abstractions;
 
 namespace Lunar.Framework.MooaLewaUI.Test.MlXaml.Compiler;
 
+[TestSubject(typeof(MlXamlParser))]
 [TestSubject(typeof(MlXamlCodeGenerator))]
-public class MlXamlCodeGeneratorTest(ITestOutputHelper testOutputHelper)
+public class EndToEndMlXamlTest(ITestOutputHelper testOutputHelper)
 {
     [Fact]
-    public void Generate_WithTextBlockAndSprite_ProducesExpectedCode()
+    public void ParseAndGenerate_CombinedTest_ProducesExpectedCode()
     {
-        // Arrange: Construct AST
-        var astNodes = new List<IMlXamlNode>
-        {
-            new TextBlockNode { Text = "Hello", Font = "Arial" },
-            new SpriteNode { Source = "player.png", X = 100, Y = 200 }
-        };
+        // 1. Arrange: Define the input XML string
+        var xml = @"
+            <Root>
+                <TextBlock Text='Hello' Font='Arial'/>
+                <Sprite Source='player.png' X='100' Y='200'/>
+            </Root>";
 
-        // Act: Generate code
+        // 2. Act: Parse the XML string into AST nodes
+        var astNodes = MlXamlParser.Parse(xml);
+
+        // 3. Act: Generate code from the AST nodes
         var tree = MlXamlCodeGenerator.Generate(astNodes);
         var code = tree.GetRoot().NormalizeWhitespace().ToFullString();
 
-        // Assert: Verify that the generated result contains key fragments
+        // 4. Assert: Validate the generated code
         testOutputHelper.WriteLine(code);
         
         Assert.Contains("public static void InitializeUI()", code);
+
         Assert.Contains("new TextBlock", code);
         Assert.Contains("Text = \"Hello\"", code);
         Assert.Contains("Font = LoadFont(\"Arial\")", code);
