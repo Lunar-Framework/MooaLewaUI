@@ -12,7 +12,6 @@ public static class NodeRegistry
     {
         Register("TextBlock", () => new TextBlockNode());
         Register("Sprite", () => new SpriteNode());
-        // 以后可以继续注册新的节点类型
     }
 
     private static void Register(string nodeName, Func<IMlXamlNode> factory)

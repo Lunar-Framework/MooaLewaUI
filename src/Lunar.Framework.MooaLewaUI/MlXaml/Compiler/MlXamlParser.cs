@@ -15,16 +15,19 @@ public class MlXamlParser
 
             foreach (var element in root.Elements())
             {
-                if (NodeRegistry.TryCreate(element.Name.LocalName, out var node))
+                if (!NodeRegistry.TryCreate(element.Name.LocalName, out var node))
                 {
-                    // node.Load(element); // 如果需要，可以从 XElement 初始化属性
-                    nodes.Add(node);
+                    continue;
                 }
+                
+                node.Load(element);
+                
+                nodes.Add(node);
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"解析XML时出错: {ex.Message}");
+            Console.WriteLine($"An error occurred while parsing XML: {ex.Message}");
         }
 
         return nodes;

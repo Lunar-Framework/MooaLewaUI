@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -11,7 +12,6 @@ public class MlXamlCodeGenerator
 {
     public static SyntaxTree Generate(List<IMlXamlNode> astNodes)
     {
-        // 1. 创建 UI Root 变量
         var rootVariable = LocalDeclarationStatement(
             VariableDeclaration(IdentifierName("var"))
                 .AddVariables(
@@ -20,14 +20,9 @@ public class MlXamlCodeGenerator
                 )
         );
 
-        // 2. 遍历 AST 节点，生成添加子节点的代码
         var statements = new List<StatementSyntax> { rootVariable };
-        foreach (var node in astNodes)
-        {
-            statements.Add(GenerateNodeAddition(node));
-        }
+        statements.AddRange(astNodes.Select(GenerateNodeAddition));
 
-        // 3. 将所有语句包装在一个方法中
         var methodDeclaration = MethodDeclaration(
                 PredefinedType(Token(SyntaxKind.VoidKeyword)),
                 Identifier("InitializeUI")
@@ -35,16 +30,13 @@ public class MlXamlCodeGenerator
             .AddModifiers(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword))
             .WithBody(Block(statements));
 
-        // 4. 将方法包装在一个类中
         var classDeclaration = ClassDeclaration("GeneratedUI")
             .AddModifiers(Token(SyntaxKind.PublicKeyword))
             .AddMembers(methodDeclaration);
 
-        // 5. 创建一个命名空间单元
         var namespaceDeclaration = NamespaceDeclaration(IdentifierName("Lunar.Framework.MooaLewaUI.MlXaml.Generated"))
             .AddMembers(classDeclaration);
 
-        // 6. 返回完整的语法树
         var compilationUnit = CompilationUnit()
             .AddUsings(UsingDirective(IdentifierName("System")))
             .AddMembers(namespaceDeclaration)
@@ -62,19 +54,14 @@ public class MlXamlCodeGenerator
 
     private static StatementSyntax GenerateNodeAddition(IMlXamlNode node)
     {
-        // 这里是核心：根据具体的节点类型调用不同的生成方法
-        switch (node)
+        return node switch
         {
-            case TextBlockNode textBlockNode:
-                return GenerateTextBlockCode(textBlockNode);
-            case SpriteNode spriteNode:
-                return GenerateSpriteCode(spriteNode);
-            default:
-                throw new NotSupportedException($"Unsupported node type: {node.GetType().Name}");
-        }
+            TextBlockNode textBlockNode => GenerateTextBlockCode(textBlockNode),
+            SpriteNode spriteNode => GenerateSpriteCode(spriteNode),
+            _ => throw new NotSupportedException($"Unsupported node type: {node.GetType().Name}")
+        };
     }
 
-    // 这里是每个特定节点的生成逻辑
     private static StatementSyntax GenerateTextBlockCode(TextBlockNode node)
     {
         return ExpressionStatement(
