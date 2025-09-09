@@ -17,9 +17,10 @@ public class MlXamlIncrementalGenerator : IIncrementalGenerator
         {
             var xmlContent = file.GetText(cancellationToken)?.ToString() ?? "";
             var astNodes = MlXamlParser.Parse(xmlContent, out var diagnostics);
-            var hintName = $"{Path.GetFileNameWithoutExtension(file.Path)}.g.cs";
+            var className = GeneratorHelper.SanitizeClassName(file.Path);
+            var hintName = $"{className}.g.cs";
 
-            return (HintName: hintName, AstNodes: astNodes, Diagnostics: diagnostics);
+            return (HintName: hintName, AstNodes: astNodes, Diagnostics: diagnostics, ClassName: className);
         });
 
         context.RegisterSourceOutput(parsedProvider, (sourceProductionContext, parsedData) =>
@@ -34,7 +35,7 @@ public class MlXamlIncrementalGenerator : IIncrementalGenerator
                 return;
             }
 
-            var syntaxTree = MlXamlCodeGenerator.Generate(parsedData.AstNodes);
+            var syntaxTree = MlXamlCodeGenerator.Generate(parsedData.AstNodes, parsedData.ClassName);
             var sourceCode = syntaxTree.GetRoot().ToFullString();
 
             sourceProductionContext.AddSource(parsedData.HintName, sourceCode);

@@ -11,7 +11,7 @@ namespace Lunar.Framework.MooaLewaUI.SourceGenerator;
 
 internal class MlXamlCodeGenerator
 {
-    public static SyntaxTree Generate(List<IMlXamlNode> astNodes)
+    public static SyntaxTree Generate(List<IMlXamlNode> astNodes, string className)
     {
         var rootVariable = LocalDeclarationStatement(
             VariableDeclaration(IdentifierName("var"))
@@ -32,7 +32,7 @@ internal class MlXamlCodeGenerator
             .AddModifiers(Token(SyntaxKind.PublicKeyword))
             .WithBody(Block(statements));
 
-        var classDeclaration = ClassDeclaration("GeneratedUI")
+        var classDeclaration = ClassDeclaration(className)
             .AddModifiers(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.PartialKeyword))
             .AddMembers(methodDeclaration);
 
@@ -102,7 +102,7 @@ internal class MlXamlCodeGenerator
                                             SyntaxKind.SimpleAssignmentExpression,
                                             IdentifierName(nameof(TextBlock.Font)),
                                             InvocationExpression(
-                                                    SyntaxHelper.QualifiedMember(nameof(Utils), nameof(Utils.LoadFont)))
+                                                    GeneratorHelper.QualifiedMember(nameof(Utils), nameof(Utils.LoadFont)))
                                                 .AddArgumentListArguments(
                                                     Argument(LiteralExpression(SyntaxKind.StringLiteralExpression,
                                                         Literal(node.Font)))
@@ -139,7 +139,7 @@ internal class MlXamlCodeGenerator
                                             SyntaxKind.SimpleAssignmentExpression,
                                             IdentifierName("Source"),
                                             InvocationExpression(
-                                                    SyntaxHelper.QualifiedMember(nameof(Utils), nameof(Utils.LoadTexture)))
+                                                    GeneratorHelper.QualifiedMember(nameof(Utils), nameof(Utils.LoadTexture)))
                                                 .AddArgumentListArguments(
                                                     Argument(LiteralExpression(SyntaxKind.StringLiteralExpression,
                                                         Literal(node.Source)))
