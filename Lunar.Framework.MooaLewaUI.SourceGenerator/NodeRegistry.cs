@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Lunar.Framework.MooaLewaUI.MlXaml.Compiler;
+namespace Lunar.Framework.MooaLewaUI.SourceGenerator;
 
-public static class NodeRegistry
+internal static class NodeRegistry
 {
     private static readonly Dictionary<string, Func<IMlXamlNode>> Factories
         = new();

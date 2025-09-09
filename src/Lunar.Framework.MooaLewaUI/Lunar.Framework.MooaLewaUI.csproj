@@ -12,7 +12,6 @@
 
     <ItemGroup>
       <Folder Include="Runtime\" />
-      <Folder Include="MlXaml\Parser\" />
     </ItemGroup>
 
     <ItemGroup>

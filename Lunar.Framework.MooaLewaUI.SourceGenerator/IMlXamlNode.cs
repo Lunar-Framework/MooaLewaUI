@@ -1,19 +1,20 @@
 using System;
 using System.Xml.Linq;
+using Lunar.Core.Base.Interfaces;
 
-namespace Lunar.Framework.MooaLewaUI.MlXaml.Compiler;
+namespace Lunar.Framework.MooaLewaUI.SourceGenerator;
 
-public interface IMlXamlNode
+internal interface IMlXamlNode
 {
-    void Load(XElement element);
+    void Load(XElement element, ILogger logger);
 }
 
-public class TextBlockNode : IMlXamlNode
+internal class TextBlockNode : IMlXamlNode
 {
     public string? Text { get; set; }
     public string? Font { get; set; }
 
-    public void Load(XElement element)
+    public void Load(XElement element, ILogger logger)
     {
         foreach (var attribute in element.Attributes())
         {
@@ -30,12 +31,12 @@ public class TextBlockNode : IMlXamlNode
     }
 }
 
-public class SpriteNode : IMlXamlNode
+internal class SpriteNode : IMlXamlNode
 {
     public string? Source { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
-    public void Load(XElement element)
+    public void Load(XElement element, ILogger logger)
     {
         foreach (var attribute in element.Attributes())
         {
@@ -50,7 +51,7 @@ public class SpriteNode : IMlXamlNode
                 {
                     if (!int.TryParse(attribute.Value, out var xValue))
                     {
-                        Console.WriteLine($"Warning: Could not parse attribute 'X' with value '{attribute.Value}'. Defaulting to 0.");
+                        logger.LogWarning($"Warning: Could not parse attribute 'X' with value '{attribute.Value}'. Defaulting to 0.");
                         xValue = 0; 
                     }
                     X = xValue;
@@ -60,7 +61,7 @@ public class SpriteNode : IMlXamlNode
                 {
                     if (!int.TryParse(attribute.Value, out var yValue))
                     {
-                        Console.WriteLine($"Warning: Could not parse attribute 'Y' with value '{attribute.Value}'. Defaulting to 0.");
+                        logger.LogWarning($"Warning: Could not parse attribute 'Y' with value '{attribute.Value}'. Defaulting to 0.");
                         yValue = 0; 
                     }
                     Y = yValue;
