@@ -6,9 +6,9 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
-namespace Lunar.Framework.MooaLewaUI.MlXaml.Compiler;
+namespace Lunar.Framework.MooaLewaUI.SourceGenerator;
 
-public class MlXamlCodeGenerator
+internal class MlXamlCodeGenerator
 {
     public static SyntaxTree Generate(List<IMlXamlNode> astNodes)
     {
