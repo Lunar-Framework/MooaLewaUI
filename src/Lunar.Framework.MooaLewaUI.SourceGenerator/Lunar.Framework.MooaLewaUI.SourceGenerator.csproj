@@ -19,4 +19,8 @@
       <ProjectReference Include="..\src\Lunar.Core.Base\Lunar.Core.Base.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="Lunar.Framework.MooaLewaUI.Test" />
+    </ItemGroup>
+
 </Project>

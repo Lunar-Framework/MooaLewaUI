@@ -1,9 +1,9 @@
 using JetBrains.Annotations;
-using Lunar.Framework.MooaLewaUI.MlXaml.Compiler;
+using Lunar.Framework.MooaLewaUI.SourceGenerator;
 using Microsoft.CodeAnalysis;
 using Xunit.Abstractions;
 
-namespace Lunar.Framework.MooaLewaUI.Test.MlXaml.Compiler;
+namespace Lunar.Framework.MooaLewaUI.Test;
 
 [TestSubject(typeof(MlXamlParser))]
 [TestSubject(typeof(MlXamlCodeGenerator))]
@@ -20,7 +20,7 @@ public class EndToEndMlXamlTest(ITestOutputHelper testOutputHelper)
             </Root>";
 
         // 2. Act: Parse the XML string into AST nodes
-        var astNodes = MlXamlParser.Parse(xml);
+        var astNodes = MlXamlParser.Parse(xml, out _);
 
         // 3. Act: Generate code from the AST nodes
         var tree = MlXamlCodeGenerator.Generate(astNodes);
