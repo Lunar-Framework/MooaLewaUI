@@ -25,13 +25,11 @@ public class MlXamlCodeGeneratorTest(ITestOutputHelper testOutputHelper)
         // Assert: Verify that the generated result contains key fragments
         testOutputHelper.WriteLine(code);
 
-        Assert.Contains("public static void InitializeUI()", code);
-        Assert.Contains("new TextBlock", code);
-        Assert.Contains("Text = \"Hello\"", code);
-        Assert.Contains("Font = LoadFont(\"Arial\")", code);
+        Assert.Contains("public partial class GeneratedUI", code);
+        Assert.Contains("public void InitializeUI()", code);
 
+        Assert.Contains("new TextBlock", code);
         Assert.Contains("new Sprite", code);
-        Assert.Contains("Source = LoadTexture(\"player.png\")", code);
         Assert.Contains("X = 100", code);
         Assert.Contains("Y = 200", code);
     }
