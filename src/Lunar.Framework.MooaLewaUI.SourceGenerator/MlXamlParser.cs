@@ -23,14 +23,15 @@ internal class MlXamlParser
                 }
 
                 node.Load(element, diagnostics);
-                
+
                 nodes.Add(node);
             }
         }
         catch (Exception ex)
         {
             diagnostics.Add(Diagnostic.Create(
-                new DiagnosticDescriptor("ML002", "XML Parsing Error", "An error occurred while parsing XML: {0}", "MlXaml", DiagnosticSeverity.Error, true),
+                new DiagnosticDescriptor("ML002", "XML Parsing Error", "An error occurred while parsing XML: {0}",
+                    "MlXaml", DiagnosticSeverity.Error, true),
                 Location.None,
                 ex.Message
             ));

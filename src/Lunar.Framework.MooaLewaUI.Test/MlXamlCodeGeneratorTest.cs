@@ -24,7 +24,7 @@ public class MlXamlCodeGeneratorTest(ITestOutputHelper testOutputHelper)
 
         // Assert: Verify that the generated result contains key fragments
         testOutputHelper.WriteLine(code);
-        
+
         Assert.Contains("public static void InitializeUI()", code);
         Assert.Contains("new TextBlock", code);
         Assert.Contains("Text = \"Hello\"", code);

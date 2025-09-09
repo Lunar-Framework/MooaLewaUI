@@ -36,6 +36,7 @@ internal class SpriteNode : IMlXamlNode
     public string? Source { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
+
     public void Load(XElement element, List<Diagnostic> diagnostics)
     {
         foreach (var attribute in element.Attributes())
@@ -52,13 +53,16 @@ internal class SpriteNode : IMlXamlNode
                     if (!int.TryParse(attribute.Value, out var xValue))
                     {
                         var diagnostic = Diagnostic.Create(
-                            new DiagnosticDescriptor("ML001", "Invalid attribute value", "Could not parse attribute 'X' with value '{0}'. Defaulting to 0.", "MlXaml", DiagnosticSeverity.Warning, true),
+                            new DiagnosticDescriptor("ML001", "Invalid attribute value",
+                                "Could not parse attribute 'X' with value '{0}'. Defaulting to 0.", "MlXaml",
+                                DiagnosticSeverity.Warning, true),
                             Location.None, // Ideally, map this to a line/column in the .mlxaml file
                             attribute.Value
                         );
                         diagnostics.Add(diagnostic);
                         xValue = 0;
                     }
+
                     X = xValue;
                     break;
                 }
@@ -67,13 +71,16 @@ internal class SpriteNode : IMlXamlNode
                     if (!int.TryParse(attribute.Value, out var yValue))
                     {
                         var diagnostic = Diagnostic.Create(
-                            new DiagnosticDescriptor("ML001", "Invalid attribute value", "Could not parse attribute 'X' with value '{0}'. Defaulting to 0.", "MlXaml", DiagnosticSeverity.Warning, true),
+                            new DiagnosticDescriptor("ML001", "Invalid attribute value",
+                                "Could not parse attribute 'X' with value '{0}'. Defaulting to 0.", "MlXaml",
+                                DiagnosticSeverity.Warning, true),
                             Location.None, // Ideally, map this to a line/column in the .mlxaml file
                             attribute.Value
                         );
                         diagnostics.Add(diagnostic);
                         yValue = 0;
                     }
+
                     Y = yValue;
                     break;
                 }

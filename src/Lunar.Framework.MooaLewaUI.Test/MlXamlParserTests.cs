@@ -21,7 +21,7 @@ public class MlXamlParserTests
         Assert.Equal(2, nodes.Count);
         Assert.IsType<TextBlockNode>(nodes[0]);
         Assert.IsType<SpriteNode>(nodes[1]);
-        
+
         var textBlockNode = nodes[0] as TextBlockNode;
         var spriteNode = nodes[1] as SpriteNode;
         Debug.Assert(textBlockNode != null, nameof(textBlockNode) + " != null");
