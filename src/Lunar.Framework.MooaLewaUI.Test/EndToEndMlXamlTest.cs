@@ -28,7 +28,7 @@ public class EndToEndMlXamlTest(ITestOutputHelper testOutputHelper)
 
         // 4. Assert: Validate the generated code
         testOutputHelper.WriteLine(code);
-        
+
         Assert.Contains("public static void InitializeUI()", code);
 
         Assert.Contains("new TextBlock", code);
