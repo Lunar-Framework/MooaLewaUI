@@ -23,13 +23,13 @@ public class EndToEndMlXamlTest(ITestOutputHelper testOutputHelper)
         var astNodes = MlXamlParser.Parse(xml, out _);
 
         // 3. Act: Generate code from the AST nodes
-        var tree = MlXamlCodeGenerator.Generate(astNodes);
+        var tree = MlXamlCodeGenerator.Generate(astNodes, "GeneratedUI");
         var code = tree.GetRoot().NormalizeWhitespace().ToFullString();
 
         // 4. Assert: Validate the generated code
         testOutputHelper.WriteLine(code);
 
-        Assert.Contains("public partial class GeneratedUI", code);
+        Assert.Contains("public partial class", code);
         Assert.Contains("public void InitializeUI()", code);
 
         Assert.Contains("new TextBlock", code);

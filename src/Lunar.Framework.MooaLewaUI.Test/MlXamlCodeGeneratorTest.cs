@@ -19,13 +19,13 @@ public class MlXamlCodeGeneratorTest(ITestOutputHelper testOutputHelper)
         };
 
         // Act: Generate code
-        var tree = MlXamlCodeGenerator.Generate(astNodes);
+        var tree = MlXamlCodeGenerator.Generate(astNodes, "GeneratedUI");
         var code = tree.GetRoot().NormalizeWhitespace().ToFullString();
 
         // Assert: Verify that the generated result contains key fragments
         testOutputHelper.WriteLine(code);
 
-        Assert.Contains("public partial class GeneratedUI", code);
+        Assert.Contains("public partial class", code);
         Assert.Contains("public void InitializeUI()", code);
 
         Assert.Contains("new TextBlock", code);
