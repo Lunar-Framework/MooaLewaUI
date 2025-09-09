@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Lunar.Framework.MooaLewaUI.Base\Lunar.Framework.MooaLewaUI.Base.csproj" />
       <ProjectReference Include="..\Lunar.Core.Base\Lunar.Core.Base.csproj" />
     </ItemGroup>
 
@@ -15,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" />
     </ItemGroup>
 
     <ItemGroup>
