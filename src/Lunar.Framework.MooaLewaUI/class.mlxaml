@@ -1,4 +1,0 @@
-<Root>
-  <TextBlock Text="HP: 123" Font="Default.ttf" />
-  <Sprite Source="hud/x86.png" X="5" Y="10"/>
-</Root>
