@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 
@@ -15,9 +17,13 @@ public class MlXamlSourceGenerator : ISourceGenerator
 
     public void Execute(GeneratorExecutionContext context)
     {
-        var mlxamlFiles = context.AdditionalFiles
-            .Where(file => file.Path.EndsWith(".mlxaml", StringComparison.OrdinalIgnoreCase));
-
+        context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.projectdir", out var projectDir);
+        
+        var mlxamlFiles = (from file in context.AdditionalFiles
+            let path = file.Path
+            where path.EndsWith(".mlxaml", StringComparison.OrdinalIgnoreCase)
+            select file).ToList();
+        
         foreach (var file in mlxamlFiles)
         {
             var xmlContent = file.GetText(context.CancellationToken)?.ToString() ?? "";
@@ -36,8 +42,10 @@ public class MlXamlSourceGenerator : ISourceGenerator
 
             var className = GeneratorHelper.SanitizeClassName(file.Path);
             var hintName = $"{className}.g.cs";
+            
+            var namespaceName = GeneratorHelper.GetNamespaceFromFilePath(file.Path, projectDir);
 
-            var syntaxTree = MlXamlCodeGenerator.Generate(astNodes, className);
+            var syntaxTree = MlXamlCodeGenerator.Generate(astNodes, className, namespaceName);
             var sourceCode = syntaxTree.GetRoot().ToFullString();
 
             context.AddSource(hintName, sourceCode);

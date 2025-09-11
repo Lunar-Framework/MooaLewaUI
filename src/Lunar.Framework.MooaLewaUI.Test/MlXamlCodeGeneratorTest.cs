@@ -19,7 +19,7 @@ public class MlXamlCodeGeneratorTest(ITestOutputHelper testOutputHelper)
         };
 
         // Act: Generate code
-        var tree = MlXamlCodeGenerator.Generate(astNodes, "GeneratedUI");
+        var tree = MlXamlCodeGenerator.Generate(astNodes, "GeneratedUI", "");
         var code = tree.GetRoot().NormalizeWhitespace().ToFullString();
 
         // Assert: Verify that the generated result contains key fragments
