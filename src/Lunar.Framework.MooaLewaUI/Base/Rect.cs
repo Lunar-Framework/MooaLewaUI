@@ -1,6 +1,6 @@
 using System;
 
-namespace Lunar.Framework.MooaLewaUI;
+namespace Lunar.Framework.MooaLewaUI.Base;
 
 public readonly struct Rect : IEquatable<Rect>
 {

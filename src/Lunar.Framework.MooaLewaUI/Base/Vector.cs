@@ -1,8 +1,9 @@
 using System;
 using System.Globalization;
 using System.Numerics;
+using Lunar.Framework.MooaLewaUI.Utilities;
 
-namespace Lunar.Framework.MooaLewaUI;
+namespace Lunar.Framework.MooaLewaUI.Base;
 
 public readonly struct Vector : IEquatable<Vector>
 {
@@ -89,7 +90,7 @@ public readonly struct Vector : IEquatable<Vector>
     {
         return Divide(vector, scale);
     }
-    
+
     /// <summary>
     ///     Length of the vector.
     /// </summary>

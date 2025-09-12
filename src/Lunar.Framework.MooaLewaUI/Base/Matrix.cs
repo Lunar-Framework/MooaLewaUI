@@ -2,8 +2,9 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Lunar.Framework.MooaLewaUI.Utilities;
 
-namespace Lunar.Framework.MooaLewaUI;
+namespace Lunar.Framework.MooaLewaUI.Base;
 
 public readonly struct Matrix : IEquatable<Matrix>
 {
@@ -181,8 +182,8 @@ public readonly struct Matrix : IEquatable<Matrix>
     /// <returns>A rotation matrix.</returns>
     public static Matrix CreateRotation(double radians)
     {
-        double cos = Math.Cos(radians);
-        double sin = Math.Sin(radians);
+        var cos = Math.Cos(radians);
+        var sin = Math.Sin(radians);
         return new Matrix(cos, sin, -sin, cos, 0, 0);
     }
 
@@ -209,8 +210,8 @@ public readonly struct Matrix : IEquatable<Matrix>
     /// <returns>A rotation matrix.</returns>
     public static Matrix CreateSkew(double xAngle, double yAngle)
     {
-        double tanX = Math.Tan(xAngle);
-        double tanY = Math.Tan(yAngle);
+        var tanX = Math.Tan(xAngle);
+        var tanY = Math.Tan(yAngle);
         return new Matrix(1.0, tanY, tanX, 1.0, 0.0, 0.0);
     }
 
@@ -399,7 +400,7 @@ public readonly struct Matrix : IEquatable<Matrix>
     /// <returns>The string representation.</returns>
     public override string ToString()
     {
-        CultureInfo ci = CultureInfo.CurrentCulture;
+        var ci = CultureInfo.CurrentCulture;
 
         string msg;
         double[] values;

@@ -1,7 +1,9 @@
 using System;
 using System.Globalization;
+using Lunar.Framework.MooaLewaUI.Controls;
+using Lunar.Framework.MooaLewaUI.Utilities;
 
-namespace Lunar.Framework.MooaLewaUI;
+namespace Lunar.Framework.MooaLewaUI.Base;
 
 public readonly struct Size : IEquatable<Size>
 {
@@ -63,7 +65,7 @@ public readonly struct Size : IEquatable<Size>
     {
         return new Size(size.Width - toSubtract.Width, size.Height - toSubtract.Height);
     }
-    
+
     /// <summary>
     ///     Constrains the size.
     /// </summary>

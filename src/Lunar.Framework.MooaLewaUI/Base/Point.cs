@@ -1,8 +1,9 @@
 using System;
 using System.Globalization;
 using System.Numerics;
+using Lunar.Framework.MooaLewaUI.Utilities;
 
-namespace Lunar.Framework.MooaLewaUI;
+namespace Lunar.Framework.MooaLewaUI.Base;
 
 public readonly struct Point : IEquatable<Point>
 {
