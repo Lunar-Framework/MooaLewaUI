@@ -72,7 +72,7 @@ internal class SpriteNode : IMlXamlNode
                     {
                         var diagnostic = Diagnostic.Create(
                             new DiagnosticDescriptor("ML001", "Invalid attribute value",
-                                "Could not parse attribute 'X' with value '{0}'. Defaulting to 0.", "MlXaml",
+                                "Could not parse attribute 'Y' with value '{0}'. Defaulting to 0.", "MlXaml",
                                 DiagnosticSeverity.Warning, true),
                             Location.None, // Ideally, map this to a line/column in the .mlxaml file
                             attribute.Value

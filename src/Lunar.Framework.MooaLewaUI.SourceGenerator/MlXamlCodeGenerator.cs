@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Lunar.Framework.MooaLewaUI;
 using Lunar.Framework.MooaLewaUI.Controls;
 using Lunar.Framework.MooaLewaUI.Utilities;
 using Microsoft.CodeAnalysis;
@@ -13,7 +12,7 @@ namespace Lunar.Framework.MooaLewaUI.SourceGenerator;
 
 internal class MlXamlCodeGenerator
 {
-    public static SyntaxTree Generate(List<IMlXamlNode> astNodes, string className,string nameSpace)
+    public static SyntaxTree Generate(List<IMlXamlNode> astNodes, string className, string nameSpace)
     {
         var rootVariable = LocalDeclarationStatement(
             VariableDeclaration(IdentifierName("var"))
@@ -37,7 +36,7 @@ internal class MlXamlCodeGenerator
         var classDeclaration = ClassDeclaration(className)
             .AddModifiers(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.PartialKeyword))
             .AddMembers(methodDeclaration);
-        
+
         var compilationUnit = CompilationUnit()
             .AddUsings(GenerateUsings())
             .WithLeadingTrivia(
@@ -71,7 +70,7 @@ internal class MlXamlCodeGenerator
         {
             UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI")),
             UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI.Controls")),
-            UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI.Utilities")),
+            UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI.Utilities"))
         };
 
         return usings.ToArray();
@@ -114,7 +113,8 @@ internal class MlXamlCodeGenerator
                                             SyntaxKind.SimpleAssignmentExpression,
                                             IdentifierName(nameof(TextBlock.Font)),
                                             InvocationExpression(
-                                                    GeneratorHelper.QualifiedMember(nameof(Utils), nameof(Utils.LoadFont)))
+                                                    GeneratorHelper.QualifiedMember(nameof(Utils),
+                                                        nameof(Utils.LoadFont)))
                                                 .AddArgumentListArguments(
                                                     Argument(LiteralExpression(SyntaxKind.StringLiteralExpression,
                                                         Literal(node.Font)))
@@ -151,7 +151,8 @@ internal class MlXamlCodeGenerator
                                             SyntaxKind.SimpleAssignmentExpression,
                                             IdentifierName("Source"),
                                             InvocationExpression(
-                                                    GeneratorHelper.QualifiedMember(nameof(Utils), nameof(Utils.LoadTexture)))
+                                                    GeneratorHelper.QualifiedMember(nameof(Utils),
+                                                        nameof(Utils.LoadTexture)))
                                                 .AddArgumentListArguments(
                                                     Argument(LiteralExpression(SyntaxKind.StringLiteralExpression,
                                                         Literal(node.Source)))
