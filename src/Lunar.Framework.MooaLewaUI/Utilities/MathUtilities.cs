@@ -1,7 +1,8 @@
 using System;
 using System.Runtime.CompilerServices;
+using Lunar.Framework.MooaLewaUI.Base;
 
-namespace Lunar.Framework.MooaLewaUI;
+namespace Lunar.Framework.MooaLewaUI.Utilities;
 
 /// <summary>
 ///     Provides math utilities not provided in System.Math.
