@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 
-namespace Lunar.Framework.MooaLewaUI.Base;
+namespace Lunar.Framework.MooaLewaUI;
 
 public abstract class UIElement
 {
@@ -15,14 +14,6 @@ public abstract class UIElement
 
     public List<UIElement> Children { get; } = new();
     //public abstract void Render(IRenderContext ctx);
-}
-
-public enum HorizontalAlignment
-{
-    Stretch,
-    Left,
-    Center,
-    Right
 }
 
 public readonly struct Thickness : IEquatable<Thickness>
@@ -80,44 +71,18 @@ public readonly struct Thickness : IEquatable<Thickness>
     }
 }
 
+public enum HorizontalAlignment
+{
+    Stretch,
+    Left,
+    Center,
+    Right
+}
+
 public enum VerticalAlignment
 {
     Stretch,
     Top,
     Center,
     Bottom
-}
-
-public readonly struct Rect : IEquatable<Rect>
-{
-    private readonly double _x;
-
-    private readonly double _y;
-
-    private readonly double _width;
-
-    private readonly double _height;
-    
-    public bool Equals(Rect other)
-    {
-        return _x.Equals(other._x) && _y.Equals(other._y) && _width.Equals(other._width) &&
-               _height.Equals(other._height);
-    }
-
-    public override bool Equals(object obj)
-    {
-        return obj is Rect other && Equals(other);
-    }
-
-    public override int GetHashCode()
-    {
-        unchecked
-        {
-            var hashCode = _x.GetHashCode();
-            hashCode = (hashCode * 397) ^ _y.GetHashCode();
-            hashCode = (hashCode * 397) ^ _width.GetHashCode();
-            hashCode = (hashCode * 397) ^ _height.GetHashCode();
-            return hashCode;
-        }
-    }
 }

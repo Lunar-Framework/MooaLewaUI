@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Lunar.Framework.MooaLewaUI.Base\Lunar.Framework.MooaLewaUI.Base.csproj" />
+      <ProjectReference Include="..\Lunar.Framework.MooaLewaUI\Lunar.Framework.MooaLewaUI.csproj" />
       <ProjectReference Include="..\Lunar.Core.Base\Lunar.Core.Base.csproj" />
     </ItemGroup>
 

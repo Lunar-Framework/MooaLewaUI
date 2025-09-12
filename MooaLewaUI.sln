@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI", "src\Lunar.Framework.MooaLewaUI\Lunar.Framework.MooaLewaUI.csproj", "{C0457FC2-857A-4536-9711-3B7F5CDB6E49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI.Sample", "src\Lunar.Framework.MooaLewaUI.Sample\Lunar.Framework.MooaLewaUI.Sample.csproj", "{C0457FC2-857A-4536-9711-3B7F5CDB6E49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Core.Base", "src\Lunar.Core.Base\Lunar.Core.Base.csproj", "{5E01402B-F94C-44A3-A04B-6C4DF6C04A4A}"
 EndProject
@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI.SourceGenerator", "src\Lunar.Framework.MooaLewaUI.SourceGenerator\Lunar.Framework.MooaLewaUI.SourceGenerator.csproj", "{8318BEEF-47A9-4CD6-A0A9-B7AD2E7D98B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI.Base", "src\Lunar.Framework.MooaLewaUI.Base\Lunar.Framework.MooaLewaUI.Base.csproj", "{09245F75-7715-4F74-A0D1-C2F29FE0CD10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI", "src\Lunar.Framework.MooaLewaUI\Lunar.Framework.MooaLewaUI.csproj", "{09245F75-7715-4F74-A0D1-C2F29FE0CD10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-namespace Lunar.Framework.MooaLewaUI.Base.Controls;
+namespace Lunar.Framework.MooaLewaUI.Controls;
 
 public class Sprite : UIElement
 {

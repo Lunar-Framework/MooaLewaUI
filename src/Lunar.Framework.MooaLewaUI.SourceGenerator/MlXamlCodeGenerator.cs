@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Lunar.Framework.MooaLewaUI.Base;
-using Lunar.Framework.MooaLewaUI.Base.Controls;
+using Lunar.Framework.MooaLewaUI;
+using Lunar.Framework.MooaLewaUI.Controls;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -68,8 +68,8 @@ internal class MlXamlCodeGenerator
     {
         var usings = new List<UsingDirectiveSyntax>
         {
-            UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI.Base")),
-            UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI.Base.Controls"))
+            UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI")),
+            UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI.Controls"))
         };
 
         return usings.ToArray();
