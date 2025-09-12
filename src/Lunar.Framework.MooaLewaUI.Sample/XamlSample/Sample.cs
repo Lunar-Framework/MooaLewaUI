@@ -1,4 +1,4 @@
-namespace Lunar.Framework.MooaLewaUI.Sample.Test;
+namespace Lunar.Framework.MooaLewaUI.Sample.XamlSample;
 
 public partial class Sample
 {

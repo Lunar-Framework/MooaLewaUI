@@ -70,7 +70,8 @@ internal class MlXamlCodeGenerator
         var usings = new List<UsingDirectiveSyntax>
         {
             UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI")),
-            UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI.Controls"))
+            UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI.Controls")),
+            UsingDirective(IdentifierName("Lunar.Framework.MooaLewaUI.Utilities")),
         };
 
         return usings.ToArray();
