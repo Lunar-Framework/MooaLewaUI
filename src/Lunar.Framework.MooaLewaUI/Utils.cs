@@ -1,4 +1,4 @@
-namespace Lunar.Framework.MooaLewaUI.Base;
+namespace Lunar.Framework.MooaLewaUI;
 
 public static class Utils
 {

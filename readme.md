@@ -2,7 +2,7 @@
 
 > **Status**: 🚧 Rapid iteration (features and structure subject to frequent changes)
 
-MooaLewaUI is a **C# UI library** designed for **cross-engine development** with a **XAML-style syntax**, inspired by **WPF** and **AvaloniaUI**.
+MooaLewaUI is a **C# UI library** designed for **cross-engine development** with a **XAML-style syntax**, inspired by [**WPF**](https://github.com/dotnet/wpf) and [**AvaloniaUI**](https://github.com/AvaloniaUI/Avalonia).
 It provides game engine/framework-specific UI components while remaining **engine-agnostic**.
 
 The name of MooaLewaUI originates from **Kamoʻoalewa**, the first human-discovered Earth quasi-satellite—a “small moon” floating in deep space.
@@ -28,11 +28,14 @@ MooaLewaUI uses the **same license model as Lunar**:
 
 * If you wish to modify MooaLewaUI and keep those modifications closed-source, or include it in a project where LGPL is not acceptable, you can contact the author for a commercial license.
 
+## References
+MooaLewaUI partially references and uses source code from [**AvaloniaUI**](https://github.com/AvaloniaUI/Avalonia), which is licensed under the **MIT License**.
+
 ---
 
 > **状态**：🚧 快速迭代中（功能与结构可能频繁变动）
 
-MooaLewaUI 是一个 **C# 跨引擎 UI 库**，采用 **XAML 风格**，灵感源自 **WPF** 与 **AvaloniaUI**。
+MooaLewaUI 是一个 **C# 跨引擎 UI 库**，采用 **XAML 风格**，灵感源自 [**WPF**](https://github.com/dotnet/wpf) 与 [**AvaloniaUI**](https://github.com/AvaloniaUI/Avalonia)。
 它提供面向游戏引擎/框架的 UI 组件，同时保持 **引擎无关**。
 
 MooaLewaUI 这一名称源自 **Kamoʻoalewa**，人类发现的第一颗地球准卫星——漂浮在深空中的“小月亮”。
@@ -55,3 +58,6 @@ MooaLewaUI 采用双重许可模式：
 
 ### 商业许可
 如果您希望修改 MooaLewaUI 并保持这些修改闭源，或在不接受 LGPL 的项目中包含 MooaLewaUI，您可以联系我以获取商业许可。
+
+## 引用说明
+MooaLewaUI 部分参考并使用了 [**AvaloniaUI**](https://github.com/AvaloniaUI/Avalonia) 的源码，Avalonia 以 **MIT 许可证** 发布。

@@ -23,7 +23,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Lunar.Framework.MooaLewaUI.SourceGenerator\Lunar.Framework.MooaLewaUI.SourceGenerator.csproj"/>
-        <ProjectReference Include="..\Lunar.Framework.MooaLewaUI\Lunar.Framework.MooaLewaUI.csproj"/>
+        <ProjectReference Include="..\Lunar.Framework.MooaLewaUI.Sample\Lunar.Framework.MooaLewaUI.Sample.csproj" />
     </ItemGroup>
 
 </Project>
