@@ -45,7 +45,7 @@ public class MlXamlSourceGenerator : ISourceGenerator
             
             var namespaceName = GeneratorHelper.GetNamespaceFromFilePath(file.Path, projectDir);
 
-            var syntaxTree = MlXamlCodeGenerator.Generate(astNodes, className, namespaceName);
+            var syntaxTree = MlXamlCodeGenerator.Generate(className, namespaceName);
             var sourceCode = syntaxTree.GetRoot().ToFullString();
 
             context.AddSource(hintName, sourceCode);
