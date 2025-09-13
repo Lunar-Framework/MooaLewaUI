@@ -12,25 +12,42 @@ namespace Lunar.Framework.MooaLewaUI.SourceGenerator;
 
 internal class MlXamlCodeGenerator
 {
-    public static SyntaxTree Generate(List<IMlXamlNode> astNodes, string className, string nameSpace)
-    {
-        var rootVariable = LocalDeclarationStatement(
-            VariableDeclaration(IdentifierName("var"))
-                .AddVariables(
-                    VariableDeclarator("root")
-                        .WithInitializer(EqualsValueClause(ObjectCreationExpression(IdentifierName("UIRoot"))
-                            .WithArgumentList(ArgumentList())))
-                )
-        );
+    private const string LoadMlxaml = "loadMlXaml";
 
-        var statements = new List<StatementSyntax> { rootVariable };
-        statements.AddRange(astNodes.Select(GenerateNodeAddition));
+    public static SyntaxTree Generate(string className, string nameSpace)
+    {
+        var sourceGeneratorAttributeList = AttributeList(
+            SingletonSeparatedList(
+                Attribute(
+                    IdentifierName("global::System.CodeDom.Compiler.GeneratedCode(\"Lunar.Framework.MooaLewaUI.SourceGenerator.MlXamlSourceGenerator.InitializeComponentCodeGenerator\", \"0.1.0\")")
+                    )
+                )
+            );
+        
+        var excludeFromCodeCoverageAttributeList = AttributeList(
+            SingletonSeparatedList(
+                Attribute(
+                    IdentifierName("global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage")
+                )
+            )
+        );
+        
+        var statements = new List<StatementSyntax> { GenerateNodeAddition() };
 
         var methodDeclaration = MethodDeclaration(
                 PredefinedType(Token(SyntaxKind.VoidKeyword)),
-                Identifier("InitializeUI")
+                Identifier("InitializeComponent")
             )
+            .AddAttributeLists(sourceGeneratorAttributeList, excludeFromCodeCoverageAttributeList)
             .AddModifiers(Token(SyntaxKind.PublicKeyword))
+            .AddParameterListParameters(
+                Parameter(Identifier(LoadMlxaml))
+                    .WithType(PredefinedType(Token(SyntaxKind.BoolKeyword)))
+                    .WithDefault(
+                        EqualsValueClause(
+                            LiteralExpression(SyntaxKind.TrueLiteralExpression))
+                    )
+            )
             .WithBody(Block(statements));
 
         var classDeclaration = ClassDeclaration(className)
@@ -75,105 +92,31 @@ internal class MlXamlCodeGenerator
 
         return usings.ToArray();
     }
-
-    private static StatementSyntax GenerateNodeAddition(IMlXamlNode node)
+    
+    private static StatementSyntax GenerateNodeAddition()
     {
-        return node switch
-        {
-            TextBlockNode textBlockNode => GenerateTextBlockCode(textBlockNode),
-            SpriteNode spriteNode => GenerateSpriteCode(spriteNode),
-            _ => throw new NotSupportedException($"Unsupported node type: {node.GetType().Name}")
-        };
-    }
+        var condition = IdentifierName(LoadMlxaml);
 
-    private static StatementSyntax GenerateTextBlockCode(TextBlockNode node)
-    {
-        return ExpressionStatement(
-            InvocationExpression(
-                MemberAccessExpression(
-                    SyntaxKind.SimpleMemberAccessExpression,
-                    IdentifierName("root"),
-                    IdentifierName("Add")
-                )
-            ).AddArgumentListArguments(
-                Argument(
-                    ObjectCreationExpression(IdentifierName(nameof(TextBlock)))
-                        .WithInitializer(
-                            InitializerExpression(
-                                SyntaxKind.ObjectInitializerExpression,
-                                SeparatedList<ExpressionSyntax>(
-                                    new[]
-                                    {
-                                        AssignmentExpression(
-                                            SyntaxKind.SimpleAssignmentExpression,
-                                            IdentifierName(nameof(TextBlock.Text)),
-                                            LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(node.Text))
-                                        ),
-                                        AssignmentExpression(
-                                            SyntaxKind.SimpleAssignmentExpression,
-                                            IdentifierName(nameof(TextBlock.Font)),
-                                            InvocationExpression(
-                                                    GeneratorHelper.QualifiedMember(nameof(Utils),
-                                                        nameof(Utils.LoadFont)))
-                                                .AddArgumentListArguments(
-                                                    Argument(LiteralExpression(SyntaxKind.StringLiteralExpression,
-                                                        Literal(node.Font)))
-                                                )
-                                        )
-                                    }
-                                )
-                            )
-                        )
+        var invocation = InvocationExpression(
+            MemberAccessExpression(
+                SyntaxKind.SimpleMemberAccessExpression,
+                IdentifierName("XlXamlLoader"),
+                IdentifierName("Load")
+            ),
+            ArgumentList(
+                SingletonSeparatedList(
+                    Argument(ThisExpression())
                 )
             )
         );
-    }
 
-    private static StatementSyntax GenerateSpriteCode(SpriteNode node)
-    {
-        return ExpressionStatement(
-            InvocationExpression(
-                MemberAccessExpression(
-                    SyntaxKind.SimpleMemberAccessExpression,
-                    IdentifierName("root"),
-                    IdentifierName("Add")
-                )
-            ).AddArgumentListArguments(
-                Argument(
-                    ObjectCreationExpression(IdentifierName(nameof(Sprite)))
-                        .WithInitializer(
-                            InitializerExpression(
-                                SyntaxKind.ObjectInitializerExpression,
-                                SeparatedList<ExpressionSyntax>(
-                                    new[]
-                                    {
-                                        AssignmentExpression(
-                                            SyntaxKind.SimpleAssignmentExpression,
-                                            IdentifierName("Source"),
-                                            InvocationExpression(
-                                                    GeneratorHelper.QualifiedMember(nameof(Utils),
-                                                        nameof(Utils.LoadTexture)))
-                                                .AddArgumentListArguments(
-                                                    Argument(LiteralExpression(SyntaxKind.StringLiteralExpression,
-                                                        Literal(node.Source)))
-                                                )
-                                        ),
-                                        AssignmentExpression(
-                                            SyntaxKind.SimpleAssignmentExpression,
-                                            IdentifierName(nameof(Sprite.X)),
-                                            LiteralExpression(SyntaxKind.NumericLiteralExpression, Literal(node.X))
-                                        ),
-                                        AssignmentExpression(
-                                            SyntaxKind.SimpleAssignmentExpression,
-                                            IdentifierName(nameof(Sprite.Y)),
-                                            LiteralExpression(SyntaxKind.NumericLiteralExpression, Literal(node.Y))
-                                        )
-                                    }
-                                )
-                            )
-                        )
-                )
-            )
+        var statement = ExpressionStatement(invocation);
+
+        var ifStatement = IfStatement(
+            condition: condition,
+            statement: Block(statement)
         );
+
+        return ifStatement;
     }
 }
