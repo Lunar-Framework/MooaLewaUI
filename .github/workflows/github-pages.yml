@@ -40,6 +40,11 @@ jobs:
       - name: Build Docs
         run: docfx doc/docfx.json
 
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'doc/_site'
+
   # -----------------------------
   # Deploy job (only run on push to main)
   # -----------------------------
@@ -54,13 +59,6 @@ jobs:
       group: "pages"
       cancel-in-progress: false
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'doc/_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
