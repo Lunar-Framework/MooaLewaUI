@@ -1,19 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Lunar.Core.Base\Lunar.Core.Base.csproj" />
+        <ProjectReference Include="..\Lunar.Core.Base\Lunar.Core.Base.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Runtime\" />
-      <Folder Include="Xaml\Compiler\" />
-      <Folder Include="Xaml\Parser\" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="**\*.mlxaml"/>
     </ItemGroup>
 
 </Project>

@@ -1,3 +1,5 @@
+<!--示例。我们最终的期望是显示出UI-->
+<!--目前的Root仅作用于世界空间，而非Canvas-->
 <Root>
   <TextBlock Text="HP: 100" Font="pixel.ttf" />
   <Sprite Source="hud/hp_bar.png" X="10" Y="20"/>

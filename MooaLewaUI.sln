@@ -1,8 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI", "src\Lunar.Framework.MooaLewaUI\Lunar.Framework.MooaLewaUI.csproj", "{C0457FC2-857A-4536-9711-3B7F5CDB6E49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI.Sample", "src\Lunar.Framework.MooaLewaUI.Sample\Lunar.Framework.MooaLewaUI.Sample.csproj", "{C0457FC2-857A-4536-9711-3B7F5CDB6E49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Core.Base", "src\Lunar.Core.Base\Lunar.Core.Base.csproj", "{5E01402B-F94C-44A3-A04B-6C4DF6C04A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI.Test", "src\Lunar.Framework.MooaLewaUI.Test\Lunar.Framework.MooaLewaUI.Test.csproj", "{0BBD42B3-3643-4515-817C-9A0E2C1D4846}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI.SourceGenerator", "src\Lunar.Framework.MooaLewaUI.SourceGenerator\Lunar.Framework.MooaLewaUI.SourceGenerator.csproj", "{8318BEEF-47A9-4CD6-A0A9-B7AD2E7D98B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunar.Framework.MooaLewaUI", "src\Lunar.Framework.MooaLewaUI\Lunar.Framework.MooaLewaUI.csproj", "{09245F75-7715-4F74-A0D1-C2F29FE0CD10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +24,17 @@ Global
 		{5E01402B-F94C-44A3-A04B-6C4DF6C04A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E01402B-F94C-44A3-A04B-6C4DF6C04A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E01402B-F94C-44A3-A04B-6C4DF6C04A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BBD42B3-3643-4515-817C-9A0E2C1D4846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BBD42B3-3643-4515-817C-9A0E2C1D4846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BBD42B3-3643-4515-817C-9A0E2C1D4846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BBD42B3-3643-4515-817C-9A0E2C1D4846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8318BEEF-47A9-4CD6-A0A9-B7AD2E7D98B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8318BEEF-47A9-4CD6-A0A9-B7AD2E7D98B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8318BEEF-47A9-4CD6-A0A9-B7AD2E7D98B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8318BEEF-47A9-4CD6-A0A9-B7AD2E7D98B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09245F75-7715-4F74-A0D1-C2F29FE0CD10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09245F75-7715-4F74-A0D1-C2F29FE0CD10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09245F75-7715-4F74-A0D1-C2F29FE0CD10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09245F75-7715-4F74-A0D1-C2F29FE0CD10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

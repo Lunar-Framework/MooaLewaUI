@@ -1,0 +1,5 @@
+<Root>
+  <TextBlock Text="HP: 100" Font="pixel.ttf" />
+  <Sprite Source="hud/hp_bar.png" X="10" Y="20"/>
+</Root>
+1
